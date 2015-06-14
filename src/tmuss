@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+# tmuss
+#
+# Profile based tmux session management
+#
+# Copyright (C) 2014-2015 Miodrag Tokić
+# Released under the MIT License.
+
+set -o errexit
+set -o nounset
+
+readonly VERSION="0.1.0-alpha"
+
+readonly EXIT_SUCCESS=0
+readonly EXIT_EGENERAL=1
+readonly EXIT_EUSER=2
+
+profdir="$HOME/.config/tmuss/profiles"
+workdir="$HOME"
+profile=""
+
+usage() {
+    cat<<EOF
+NAME
+    tmuss - profile based tmux session management
+
+SYNOPSYS
+    tmuss [options] <profile>
+
+OPTIONS
+    -h, --help
+        Prints help
+
+    -l, --list
+        Lists profiles
+
+PROFILE
+    Profile name
+
+VERSION
+    $VERSION
+EOF
+}
+
+main() {
+    tmux has-session -t "$profile" &> /dev/null && has_session=0 || has_session=1
+
+    if [ $has_session -eq 1 ]; then
+        if [ ! -f "$profdir/$profile" ]; then
+            echo "Profile configuration not found: $profile"
+            exit $EXIT_EGENERAL
+        fi
+
+        tmux new-session -d -c $workdir -s $profile
+        . "$profdir/$profile"
+    fi
+
+    tmux attach-session -c "$workdir" -t "$profile"
+}
+
+if [ $# -lt 1 ]; then
+    usage
+    exit $EXIT_EUSER
+fi
+
+while test $# != 0; do
+    case "$1" in
+        -h|--help|help)
+            usage
+            exit 0
+            ;;
+        -l|--list)
+            ls $profdir
+            exit 0
+            ;;
+        *)
+            [ -n "$1" ] && profile=$1
+            ;;
+    esac
+
+    shift
+done
+
+
+main
+
+exit $EXIT_SUCCESS
