@@ -1,0 +1,53 @@
+tmuss
+=====
+
+Current release: 0.1.0-alpha
+
+
+Description
+-----------
+
+Profile based tmux session management
+
+
+Installation
+------------
+
+Requirements:
+
+ - tmux
+ - Bash compatible shell
+
+Installing:
+
+Place 'tmuss' somewhere in your 'PATH'
+
+
+Documentation
+-------------
+
+N/A
+
+
+Contributing
+------------
+
+Open an issue or send a pull request on the Github
+(http://github.com/loonies/tmuss).
+
+
+Authors
+-------
+
+Maintainer:
+
+ - Miodrag Tokić
+
+
+Copyright
+---------
+
+Copyright (C) 2014-2015 Miodrag Tokić.
+
+Released under the MIT License. See the LICENSE file for details.
+
