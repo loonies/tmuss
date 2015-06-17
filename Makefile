@@ -13,7 +13,7 @@ help:
 	@echo "Usage: make [<options>] [<target>]"
 	@echo ""
 	@echo "Options:"
-	@echo "  prefix=<path>  Set alternate installation path"
+	@echo "  prefix=<path>  Set alternate install/uninstall path"
 	@echo ""
 	@echo "Targets:"
 	@echo "  help       Display help"
