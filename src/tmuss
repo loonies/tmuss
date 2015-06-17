@@ -68,11 +68,11 @@ while test $# != 0; do
     case "$1" in
         -h|--help|help)
             usage
-            exit 0
+            exit $EXIT_SUCCESS
             ;;
         -l|--list)
             ls $profdir
-            exit 0
+            exit $EXIT_SUCCESS
             ;;
         *)
             [ -n "$1" ] && profile=$1
