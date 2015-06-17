@@ -26,7 +26,7 @@ NAME
     tmuss - profile based tmux session management
 
 SYNOPSYS
-    tmuss [options] <profile>
+    tmuss [options] [<profile>]
 
 OPTIONS
     -h, --help
@@ -60,8 +60,8 @@ main() {
 }
 
 if [ $# -lt 1 ]; then
-    usage
-    exit $EXIT_EUSER
+    ls $profdir
+    exit $EXIT_SUCCESS
 fi
 
 while test $# != 0; do
