@@ -35,11 +35,24 @@ OPTIONS
     -l, --list
         Lists profiles
 
+    --version
+        Print program version
+
 PROFILE
     Profile name
 
 VERSION
     $VERSION
+EOF
+}
+
+version() {
+    cat<<EOF
+tmuss version $VERSION
+
+Copyright (C) 2014-2015 Miodrag Tokić.
+Released under the MIT License.
+
 EOF
 }
 
@@ -86,6 +99,10 @@ while test $# != 0; do
             ;;
         -l|--list)
             list_profiles
+            exit $EXIT_SUCCESS
+            ;;
+        --version)
+            version
             exit $EXIT_SUCCESS
             ;;
         *)
