@@ -43,6 +43,22 @@ VERSION
 EOF
 }
 
+is_profile_active() {
+    tmux has-session -t "$1" &> /dev/null
+}
+
+list_profiles() {
+    local marker='-'
+
+    echo "Available profiles:"
+
+    for profile in $(find "$profdir" -type f -printf "%f\n"); do
+        is_profile_active "$profile" && marker='*' || marker='-'
+
+        printf " %s %s\n" "$marker" "$profile"
+    done
+}
+
 main() {
     tmux has-session -t "$profile" &> /dev/null && has_session=0 || has_session=1
 
@@ -60,7 +76,7 @@ main() {
 }
 
 if [ $# -lt 1 ]; then
-    ls $profdir
+    list_profiles
     exit $EXIT_SUCCESS
 fi
 
@@ -71,7 +87,7 @@ while test $# != 0; do
             exit $EXIT_SUCCESS
             ;;
         -l|--list)
-            ls $profdir
+            list_profiles
             exit $EXIT_SUCCESS
             ;;
         *)
