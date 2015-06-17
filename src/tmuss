@@ -60,9 +60,7 @@ list_profiles() {
 }
 
 main() {
-    tmux has-session -t "$profile" &> /dev/null && has_session=0 || has_session=1
-
-    if [ $has_session -eq 1 ]; then
+    if ! is_profile_active "$profile"; then
         if [ ! -f "$profdir/$profile" ]; then
             echo "Profile configuration not found: $profile"
             exit $EXIT_EGENERAL
