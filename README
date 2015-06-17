@@ -20,7 +20,7 @@ Requirements:
 
 Installing:
 
-Place 'tmuss' somewhere in your 'PATH'
+    make install
 
 
 Documentation
