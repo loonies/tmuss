@@ -26,8 +26,17 @@ Usage:
     tmuss [<profile>]
     tmuss [--version] [-h|--help] [-l|--list]
 
+EOF
+}
 
+help() {
+    usage
 
+    cat <<EOF
+Options:
+    -h, --help  Print help
+    -l, --list  List all available profiles
+    --version   Print program version
 
 EOF
 }
@@ -80,7 +89,7 @@ fi
 while test $# != 0; do
     case "$1" in
         -h|--h|--he|--hel|--help)
-            usage
+            help
             exit $EXIT_SUCCESS
             ;;
         -l|--list)
@@ -90,6 +99,10 @@ while test $# != 0; do
         --version)
             version
             exit $EXIT_SUCCESS
+            ;;
+        -*)
+            usage
+            exit $EXIT_EUSER
             ;;
         *)
             [ -n "$1" ] && profile=$1
