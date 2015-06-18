@@ -1,0 +1,70 @@
+tmuss(1) - profile based tmux session management
+================================================
+
+SYNOPSYS
+--------
+
+`tmuss` [<profile>] <br>
+`tmuss` [--version] [--help] [-l|--list]
+
+DESCRIPTION
+-----------
+
+**tmuss** is a profile based **tmux** session manager.
+
+In the first form it lists all available profiles if no <profile> name is
+given. It starts a **tmux** session with the <profile> name, or attaches to the
+<profile> session if the session with the <profile> name is already started.
+
+The second syntax prints version, help, or lists available profiles.
+
+Profile sessions are defined by tmuss.profile(5).
+
+OPTIONS
+-------
+
+  * `-h`, `--help`:
+    Print help.
+
+  * `-l`, `--list`:
+    List all available profiles. Currently active profiles are marked with a
+    star (`*`).
+
+  * `--version`:
+    Print program version.
+
+EXIT STATUS
+-----------
+
+0 Success
+
+1 General error
+
+2 User error
+
+FILES
+-----
+
+Profile files are located under the _~/.config/tmuss/profiles/_ directory. See
+tmuss.profile(5) for more details.
+
+BUGS
+----
+
+Report bugs to &lt;https://github.com/loonies/tmuss&gt;.
+
+EXAMPLES
+--------
+
+  * List all available profiles:
+
+    $ tmuss
+
+  * Start or attach to the _default_ profile:
+
+    $ tmuss default
+
+SEE ALSO
+--------
+
+tmuss.profile(5), tmux(1)
