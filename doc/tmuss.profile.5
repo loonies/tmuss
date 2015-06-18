@@ -1,0 +1,44 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "TMUSS\.PROFILE" "5" "June 2015" "tmuss 0.1.0-alpha" "Tmuss Manual"
+.
+.SH "NAME"
+\fBtmuss\.profile\fR \- tmuss profile file
+.
+.SH "SYNOPSYS"
+\fIprofile\fR\.profile
+.
+.SH "DESCRIPTION"
+Profiles for \fBtmuss\fR are located under the \fI~/\.conf/tmuss/profiles/\fR directory\. The profile files consist of the shell syntax and are sourced using the \fB\.\fR (\fBsource\fR) shell builtin\.
+.
+.P
+Including \fIshebang\fR, or setting executable flag on a profile file is not recommended\.
+.
+.P
+Available variables in a profile:
+.
+.TP
+\fB$profile\fR
+The profile (session) name\.
+.
+.SH "EXAMPLES"
+.
+.TP
+Simple example (save file as \fI~/\.config/tmuss/profiles/simple\.profile\fR):
+.
+.IP "" 4
+.
+.nf
+
+tmux rename\-window \-t "$profile":1 "edit"
+tmux new\-window \-c "$HOME/my/project" \-n "git"
+tmux send\-keys \-t "$profile":2 "git status" Enter
+.
+.fi
+.
+.IP "" 0
+
+.
+.SH "SEE ALSO"
+tmuss(1), tmux(1)
