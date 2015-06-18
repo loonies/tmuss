@@ -22,11 +22,16 @@ Installing:
 
     make install
 
+Run 'make help' for more options.
+
 
 Documentation
 -------------
 
-N/A
+The documentation is available via man pages.
+
+    man 1 tmuss
+    man 5 tmuss.profile
 
 
 Contributing
