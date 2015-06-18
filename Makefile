@@ -33,9 +33,16 @@ man:
 .PHONY: install
 install:
 	$(INSTALL) -d -m 0755 $(bindir)
+	$(INSTALL) -d -m 0755 $(mandir)/man1
+	$(INSTALL) -d -m 0755 $(mandir)/man5
+
 	$(INSTALL) -m 0755 src/tmuss $(bindir)
+	$(INSTALL) -m 0644 doc/tmuss.1 $(mandir)/man1/tmuss.1
+	$(INSTALL) -m 0644 doc/tmuss.profile.5 $(mandir)/man5/tmuss.profile.5
 
 .PHONY: uninstall
 uninstall:
 	$(RM) $(bindir)/tmuss
+	$(RM) $(mandir)/man1/tmuss.1
+	$(RM) $(mandir)/man5/tmuss.profile.5
 
