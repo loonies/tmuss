@@ -60,7 +60,7 @@ EXAMPLES
 
     $ tmuss
 
-  * Start or attach to the _default_ profile:
+  * Start or attach the _default_ profile:
 
     $ tmuss default
 
