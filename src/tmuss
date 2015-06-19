@@ -16,6 +16,8 @@ readonly EXIT_SUCCESS=0
 readonly EXIT_EGENERAL=1
 readonly EXIT_EUSER=2
 
+readonly profext=".profile"
+
 profdir="$HOME/.config/tmuss/profiles"
 workdir="$HOME"
 profile=""
@@ -56,12 +58,14 @@ is_profile_active() {
 }
 
 list_profiles() {
+    local profile=''
     local marker='-'
 
     echo "Available profiles:"
 
-    for profile in $(find "$profdir" -type f -printf "%f\n"); do
-        is_profile_active "$profile" && marker='*' || marker='-'
+    for profile in $(find "$profdir" -type f -printf "%f\n" | sort); do
+        profile=${profile%$profext}
+        is_profile_active "${profile}" && marker='*' || marker='-'
 
         printf " %s %s\n" "$marker" "$profile"
     done
@@ -69,13 +73,13 @@ list_profiles() {
 
 main() {
     if ! is_profile_active "$profile"; then
-        if [ ! -f "$profdir/$profile" ]; then
+        if [ ! -f "$profdir/$profile$profext" ]; then
             echo "Profile configuration not found: $profile"
             exit $EXIT_EGENERAL
         fi
 
         tmux new-session -d -c $workdir -s $profile
-        . "$profdir/$profile"
+        . "$profdir/$profile$profext"
     fi
 
     tmux attach-session -c "$workdir" -t "$profile"
