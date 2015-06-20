@@ -10,7 +10,7 @@ RM      = rm -f
 INSTALL = install
 RONN    = ronn --pipe
 
-RONNATTR = --manual="Tmuss Manual" --organization="tmuss 0.1.0-alpha"
+RONNATTR = --manual="Tmuss Manual" --organization="tmuss 0.1.0"
 
 .PHONY: help
 help:
