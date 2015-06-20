@@ -1,8 +1,15 @@
 tmuss changelog
 ===============
 
-Unreleased
-----------
+Version 0.1.0 (20th June 2015)
+------------------------------
 
- - Initial release
+Initial release
+
+Tmuss is a profile based Tmux session management. It executes a set of
+commands defined in a profile file, which allows you simple Tmux session
+management.
+
+Initial release supports listing profiles, creating profile based
+sessions, and attaching to existing sessions.
 
