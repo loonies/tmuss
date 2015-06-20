@@ -58,14 +58,14 @@ is_profile_active() {
 }
 
 list_profiles() {
-    local profile=''
-    local marker='-'
+    local profile=""
+    local marker="-"
 
     echo "Available profiles:"
 
     for profile in $(find "$profdir" -type f -printf "%f\n" | sort); do
         profile=${profile%$profext}
-        is_profile_active "${profile}" && marker='*' || marker='-'
+        is_profile_active "${profile}" && marker="*" || marker="-"
 
         printf " %s %s\n" "$marker" "$profile"
     done
