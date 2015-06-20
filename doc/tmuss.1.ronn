@@ -10,7 +10,9 @@ SYNOPSYS
 DESCRIPTION
 -----------
 
-**tmuss** is a profile based **tmux** session manager.
+**tmuss** is a profile based **tmux** session manager. It executes a set of
+commands defined in a profile file, which allows you simple Tmux session
+management.
 
 In the first form it lists all available profiles if no <profile> name is
 given. It starts a **tmux** session with the <profile> name, or attaches to the

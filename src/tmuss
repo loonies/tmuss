@@ -10,7 +10,7 @@
 set -o errexit
 set -o nounset
 
-readonly VERSION="0.1.0-alpha"
+readonly VERSION="0.1.0"
 
 readonly EXIT_SUCCESS=0
 readonly EXIT_EGENERAL=1

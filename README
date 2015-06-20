@@ -1,13 +1,18 @@
 tmuss
 =====
 
-Current release: 0.1.0-alpha
+Current release: 0.1.0
 
 
 Description
 -----------
 
-Profile based tmux session management
+Tmuss is a profile based Tmux session management. It executes a set of
+commands defined in a profile file, which allows you simple Tmux session
+management.
+
+Tmuss is written in Bash and uses Bash syntax for profile files. It
+doesn't require any additional dependencies, or learning new syntax.
 
 
 Installation
