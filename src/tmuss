@@ -65,7 +65,7 @@ list_profiles() {
     echo "Available profiles:"
 
     for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
-        profile=${profconf%$profext}
+        profile="${profconf%$profext}"
         is_profile_active "${profile}" && marker="*" || marker="-"
 
         printf " %s %s\n" "$marker" "$profile"
@@ -81,7 +81,7 @@ main() {
             exit $EXIT_EGENERAL
         fi
 
-        tmux new-session -d -c $workdir -s $profile
+        tmux new-session -d -c "$workdir" -s "$profile"
         . "$profconf"
     fi
 
