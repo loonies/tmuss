@@ -1,0 +1,125 @@
+#!/usr/bin/env bash
+
+# tmuss
+#
+# Profile based tmux session management
+#
+# Copyright (C) 2014-2015 Miodrag Tokić
+# Released under the MIT License.
+
+set -o errexit
+set -o nounset
+
+readonly VERSION="0.1.0"
+
+readonly EXIT_SUCCESS=0
+readonly EXIT_EGENERAL=1
+readonly EXIT_EUSER=2
+
+readonly profext=".profile"
+
+profdir="$HOME/.config/tmuss/profiles"
+workdir="$HOME"
+profile=""
+
+usage() {
+    cat <<EOF
+Usage:
+    tmuss [<profile>]
+    tmuss [--version] [-h|--help] [-l|--list]
+
+EOF
+}
+
+help() {
+    usage
+
+    cat <<EOF
+Options:
+    -h, --help  Print help
+    -l, --list  List available profiles
+    --version   Print program version
+
+EOF
+}
+
+version() {
+    cat<<EOF
+tmuss version $VERSION
+
+Copyright (C) 2014-2015 Miodrag Tokić.
+Released under the MIT License.
+
+EOF
+}
+
+is_profile_active() {
+    tmux has-session -t "$1" &> /dev/null
+}
+
+list_profiles() {
+    local profconf=""
+    local profile=""
+    local marker="-"
+
+    echo "Available profiles:"
+
+    for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
+        profile="${profconf%$profext}"
+        is_profile_active "${profile}" && marker="*" || marker="-"
+
+        printf " %s %s\n" "$marker" "$profile"
+    done
+}
+
+main() {
+    if ! is_profile_active "$profile"; then
+        local profconf="$profdir/$profile$profext"
+
+        if [ ! -f "$profconf" ]; then
+            echo "Profile configuration not found: $profile"
+            exit $EXIT_EGENERAL
+        fi
+
+        tmux new-session -d -c "$workdir" -s "$profile"
+        . "$profconf"
+    fi
+
+    tmux attach-session -c "$workdir" -t "$profile"
+}
+
+if [ $# -lt 1 ]; then
+    list_profiles
+    exit $EXIT_SUCCESS
+fi
+
+while test $# != 0; do
+    case "$1" in
+        -h|--h|--he|--hel|--help)
+            help
+            exit $EXIT_SUCCESS
+            ;;
+        -l|--list)
+            list_profiles
+            exit $EXIT_SUCCESS
+            ;;
+        --version)
+            version
+            exit $EXIT_SUCCESS
+            ;;
+        -*)
+            usage
+            exit $EXIT_EUSER
+            ;;
+        *)
+            [ -n "$1" ] && profile=$1
+            ;;
+    esac
+
+    shift
+done
+
+
+main
+
+exit $EXIT_SUCCESS

@@ -1,0 +1,36 @@
+tmuss.profile(5) - tmuss profile file
+=====================================
+
+SYNOPSYS
+--------
+
+<profile>.profile
+
+DESCRIPTION
+-----------
+
+Profiles for **tmuss** are located under the _~/.conf/tmuss/profiles/_
+directory. The profile files consist of the shell syntax and are sourced using
+the `.` (`source`) shell builtin.
+
+Including _shebang_, or setting executable flag on a profile file is not
+recommended.
+
+Available variables in a profile:
+
+  * `$profile`:
+    The profile (session) name.
+
+EXAMPLES
+--------
+
+  * Simple example (save file as _~/.config/tmuss/profiles/simple.profile_):
+
+        tmux rename-window -t "$profile":1 "edit"
+        tmux new-window -c "$HOME/my/project" -n "git"
+        tmux send-keys -t "$profile":2 "git status" Enter
+
+SEE ALSO
+--------
+
+tmuss(1), tmux(1)
