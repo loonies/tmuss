@@ -4,7 +4,7 @@ SHELL = /bin/sh
 
 prefix ?= /usr/local
 bindir  = $(prefix)/bin
-mandir  = $(prefix)/share/man
+shrdir  = $(prefix)/share
 
 RM      = rm -f
 INSTALL = install
@@ -33,16 +33,19 @@ man:
 .PHONY: install
 install:
 	$(INSTALL) -d -m 0755 $(bindir)
-	$(INSTALL) -d -m 0755 $(mandir)/man1
-	$(INSTALL) -d -m 0755 $(mandir)/man5
+	$(INSTALL) -d -m 0755 $(shrdir)/man/man1
+	$(INSTALL) -d -m 0755 $(shrdir)/man/man5
+	$(INSTALL) -d -m 0755 $(shrdir)/bash-completion/completions
 
 	$(INSTALL) -m 0755 src/tmuss $(bindir)
-	$(INSTALL) -m 0644 doc/tmuss.1 $(mandir)/man1/tmuss.1
-	$(INSTALL) -m 0644 doc/tmuss.profile.5 $(mandir)/man5/tmuss.profile.5
+	$(INSTALL) -m 0644 doc/tmuss.1 $(shrdir)/man/man1/tmuss.1
+	$(INSTALL) -m 0644 doc/tmuss.profile.5 $(shrdir)/man/man5/tmuss.profile.5
+	$(INSTALL) -m 0644 contrib/tmuss-completion.bash $(shrdir)/bash-completion/completions/tmuss
 
 .PHONY: uninstall
 uninstall:
 	$(RM) $(bindir)/tmuss
-	$(RM) $(mandir)/man1/tmuss.1
-	$(RM) $(mandir)/man5/tmuss.profile.5
+	$(RM) $(shrdir)/man/man1/tmuss.1
+	$(RM) $(shrdir)/man/man5/tmuss.profile.5
+	$(RM) $(shrdir)/bash-completion/completions/tmuss
 

@@ -1,6 +1,12 @@
 tmuss changelog
 ===============
 
+Unreleased
+----------
+
+ - Add Bash completion
+
+
 Version 0.1.0 (20th June 2015)
 ------------------------------
 
