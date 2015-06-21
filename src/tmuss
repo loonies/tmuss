@@ -66,7 +66,7 @@ list_profiles() {
 
     for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
         profile="${profconf%$profext}"
-        is_profile_active "${profile}" && marker="*" || marker="-"
+        is_profile_active "$profile" && marker="*" || marker="-"
 
         printf " %s %s\n" "$marker" "$profile"
     done
@@ -76,7 +76,7 @@ main() {
     if ! is_profile_active "$profile"; then
         local profconf="$profdir/$profile$profext"
 
-        if [ ! -f "$profconf" ]; then
+        if [[ ! -f "$profconf" ]]; then
             echo "Profile configuration not found: $profile"
             exit $EXIT_EGENERAL
         fi
@@ -88,12 +88,12 @@ main() {
     tmux attach-session -c "$workdir" -t "$profile"
 }
 
-if [ $# -lt 1 ]; then
+if [[ $# -lt 1 ]]; then
     list_profiles
     exit $EXIT_SUCCESS
 fi
 
-while test $# != 0; do
+while [[ $# -ne 0 ]]; do
     case "$1" in
         -h|--h|--he|--hel|--help)
             help
@@ -112,7 +112,7 @@ while test $# != 0; do
             exit $EXIT_EUSER
             ;;
         *)
-            [ -n "$1" ] && profile=$1
+            [[ -n "$1" ]] && profile="$1"
             ;;
     esac
 
