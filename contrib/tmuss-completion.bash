@@ -18,7 +18,7 @@ _tmuss() {
             ;;
         *)
             mapfile -t -s 1 opts < <(tmuss --list)
-            opts=${opts[@]//[-*]/}
+            opts=${opts[@]//[-+*]/}
             ;;
     esac
 

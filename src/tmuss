@@ -53,8 +53,23 @@ Released under the MIT License.
 EOF
 }
 
-is_profile_active() {
-    tmux has-session -t "$1" &> /dev/null
+# Returns profile status
+#
+# Arguments:
+#   $1  Profile name
+#
+# Returns:
+#   -1  Inactive profile
+#    0  Active profile, detached
+#    1  Active profile, attached
+profile_status() {
+    local status
+
+    if status=$(tmux list-sessions 2> /dev/null | grep "^${1}:"); then
+        [[ "$status" == *\(attached\) ]] && echo 1 || echo 0
+    else
+        echo -1
+    fi
 }
 
 list_profiles() {
@@ -66,14 +81,19 @@ list_profiles() {
 
     for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
         profile="${profconf%$profext}"
-        is_profile_active "$profile" && marker="*" || marker="-"
+
+        case $(profile_status "$profile") in
+            -1) marker="-" ;;
+            0) marker="+" ;;
+            1) marker="*" ;;
+        esac
 
         printf " %s %s\n" "$marker" "$profile"
     done
 }
 
 main() {
-    if ! is_profile_active "$profile"; then
+    if [[ $(profile_status "$profile") -eq -1 ]]; then
         local profconf="$profdir/$profile$profext"
 
         if [[ ! -f "$profconf" ]]; then
