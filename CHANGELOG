@@ -4,7 +4,9 @@ tmuss changelog
 Unreleased
 ----------
 
- - Add Bash completion
+ - Add Bash completion.
+
+ - Fine grained profile status listing.
 
 
 Version 0.1.0 (20th June 2015)
