@@ -58,9 +58,9 @@ is_profile_active() {
 }
 
 list_profiles() {
-    local profconf=""
-    local profile=""
-    local marker="-"
+    local profconf
+    local profile
+    local marker
 
     echo "Available profiles:"
 
