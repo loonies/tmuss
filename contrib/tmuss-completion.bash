@@ -8,7 +8,7 @@ _tmuss() {
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD - 1]}"
 
-    if [[ "$COMP_CWORD" -eq 2 ]]; then
+    if [[ "$COMP_CWORD" -ge 2 ]]; then
         return 0
     fi
 
