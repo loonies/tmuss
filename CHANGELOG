@@ -5,6 +5,7 @@ Unreleased
 ----------
 
  - Add Bash completion.
+ - Add zsh completion.
 
  - Fine grained profile status listing.
 
