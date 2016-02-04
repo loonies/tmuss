@@ -36,9 +36,9 @@ help() {
 
     cat <<EOF
 Options:
-    -h, --help  Print help
-    -l, --list  List available profiles
-    --version   Print program version
+    -h, --help  Display help message
+    -l, --list  List profiles
+    --version   Display version information
 
 EOF
 }

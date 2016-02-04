@@ -13,9 +13,9 @@ _tmuss() {
     case "$words[2]" in
         -*)
             _arguments \
-                '(- 1 *)'{-h,--help}'[print help]' \
-                '(- 1 *)'{-l,--list}'[list all available profiles]' \
-                '(- 1 *)--version[print program version]'
+                '(- 1 *)'{-h,--help}'[display help message]' \
+                '(- 1 *)'{-l,--list}'[list profiles]' \
+                '(- 1 *)--version[display version information]'
             ;;
 
         *)
