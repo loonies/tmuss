@@ -4,7 +4,7 @@
 #
 # Profile based tmux session management
 #
-# Copyright (C) 2014-2015 Miodrag Tokić
+# Copyright (C) 2014-2016 Miodrag Tokić
 # Released under the MIT License.
 
 set -o errexit
@@ -47,7 +47,7 @@ version() {
     cat<<EOF
 tmuss version $VERSION
 
-Copyright (C) 2014-2015 Miodrag Tokić.
+Copyright (C) 2014-2016 Miodrag Tokić.
 Released under the MIT License.
 
 EOF
