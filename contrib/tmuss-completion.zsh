@@ -19,9 +19,7 @@ _tmuss() {
             ;;
 
         *)
-            profiles=("${${(@f)$(tmuss --list)}[@]}")
-            profiles=("${profiles[@]//[-+* ]/}")
-
+            profiles=($(tmuss --list))
             _describe 'profile' profiles
             ;;
     esac

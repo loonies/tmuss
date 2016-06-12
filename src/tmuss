@@ -73,32 +73,36 @@ profile_status() {
 }
 
 list_profiles() {
+    local -a profiles
     local profconf
-    local profile
 
     for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
-        profile="${profconf%$profext}"
-
-        printf " %s %s\n" "-" "$profile"
+        profiles+=("${profconf%$profext}")
     done
+
+    printf "%s\n" "${profiles[@]}" | column -c $(tput cols)
 }
 
 list_sessions() {
-    local profconf
+    local -a profiles
     local profile
+    local profconf
     local marker
 
     for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
         profile="${profconf%$profext}"
 
         case $(profile_status "$profile") in
-            0) marker="-" ;;
-            1) marker="+" ;;
+            0) marker="(-)" ;;
+            1) marker="(+)" ;;
             *) continue ;;
         esac
 
-        printf " %s %s\n" "$marker" "$profile"
+        printf -v profile "%s %s" "$profile" "$marker"
+        profiles+=("$profile")
     done
+
+    printf "%s\n" "${profiles[@]}" | column -c $(tput cols)
 }
 
 main() {
