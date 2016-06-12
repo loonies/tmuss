@@ -19,7 +19,7 @@ _tmuss() {
             ;;
 
         *)
-            profiles=("${${(@f)$(tmuss --list)}[@]:1}")
+            profiles=("${${(@f)$(tmuss --list)}[@]}")
             profiles=("${profiles[@]//[-+* ]/}")
 
             _describe 'profile' profiles

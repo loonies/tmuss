@@ -17,7 +17,7 @@ _tmuss() {
             opts="--help --list --version"
             ;;
         *)
-            mapfile -t -s 1 opts < <(tmuss --list)
+            mapfile -t opts < <(tmuss --list)
             opts=${opts[@]//[-+*]/}
             ;;
     esac

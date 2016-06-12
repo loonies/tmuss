@@ -76,8 +76,6 @@ list_profiles() {
     local profconf
     local profile
 
-    echo "Available profiles:"
-
     for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
         profile="${profconf%$profext}"
 
@@ -89,8 +87,6 @@ list_sessions() {
     local profconf
     local profile
     local marker
-
-    echo "Started sessions:"
 
     for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
         profile="${profconf%$profext}"
