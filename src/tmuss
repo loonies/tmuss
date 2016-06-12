@@ -75,17 +75,30 @@ profile_status() {
 list_profiles() {
     local profconf
     local profile
-    local marker
 
     echo "Available profiles:"
 
     for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
         profile="${profconf%$profext}"
 
+        printf " %s %s\n" "-" "$profile"
+    done
+}
+
+list_sessions() {
+    local profconf
+    local profile
+    local marker
+
+    echo "Started sessions:"
+
+    for profconf in $(find "$profdir" -type f -printf "%f\n" | sort); do
+        profile="${profconf%$profext}"
+
         case $(profile_status "$profile") in
-            -1) marker="-" ;;
-            0) marker="+" ;;
-            1) marker="*" ;;
+            0) marker="-" ;;
+            1) marker="+" ;;
+            *) continue ;;
         esac
 
         printf " %s %s\n" "$marker" "$profile"
@@ -109,7 +122,7 @@ main() {
 }
 
 if [[ $# -lt 1 ]]; then
-    list_profiles
+    list_sessions
     exit $EXIT_SUCCESS
 fi
 
