@@ -7,7 +7,9 @@ Unreleased
  - Add Bash completion.
  - Add zsh completion.
 
- - Fine grained profile status listing.
+ - Profiles are now listed as columns. If 'tmuss' is invoked without
+   arguments it will list started sessions only. Every started session
+   is marked as detached or attached.
 
 
 Version 0.1.0 (20th June 2015)
