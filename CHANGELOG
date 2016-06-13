@@ -11,6 +11,8 @@ Unreleased
    arguments it will list started sessions only. Every started session
    is marked as detached or attached.
 
+ - Improved error handling in case no profiles are found.
+
 
 Version 0.1.0 (20th June 2015)
 ------------------------------

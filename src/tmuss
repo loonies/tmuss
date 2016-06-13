@@ -80,7 +80,9 @@ list_profiles() {
         profiles+=("${profconf%$profext}")
     done
 
-    printf "%s\n" "${profiles[@]}" | column -c $(tput cols)
+    if [[ ! -z "${profiles-}" ]]; then
+        printf "%s\n" "${profiles[@]}" | column -c $(tput cols)
+    fi
 }
 
 list_sessions() {
@@ -102,7 +104,9 @@ list_sessions() {
         profiles+=("$profile")
     done
 
-    printf "%s\n" "${profiles[@]}" | column -c $(tput cols)
+    if [[ ! -z "${profiles-}" ]]; then
+        printf "%s\n" "${profiles[@]}" | column -c $(tput cols)
+    fi
 }
 
 main() {
