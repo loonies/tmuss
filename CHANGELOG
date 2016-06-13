@@ -4,8 +4,7 @@ tmuss changelog
 Unreleased
 ----------
 
- - Add Bash completion.
- - Add zsh completion.
+ - Add Bash and zsh completion.
 
  - Profiles are now listed as columns. If 'tmuss' is invoked without
    arguments it will list started sessions only. Every started session
@@ -25,4 +24,3 @@ management.
 
 Initial release supports listing profiles, creating profile based
 sessions, and attaching to existing sessions.
-
