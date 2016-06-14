@@ -14,11 +14,13 @@ DESCRIPTION
 commands defined in a profile file, which allows you simple Tmux session
 management.
 
-In the first form it lists all available profiles if no <profile> name is
-given. It starts a **tmux** session with the <profile> name, or attaches to the
-<profile> session if the session with the <profile> name is already started.
+In the first form it lists started profiles (active sessions) if no <profile>
+name is given. Active but detached profiles are marked with a minus sign (`-`),
+active and attached profiles with a plus sign (`+`). It starts a **tmux**
+session with the <profile> name, or attaches to the <profile> session if the
+session with the <profile> name is already started.
 
-The second syntax prints version, help, or lists available profiles.
+The second form prints version, help, or lists available profiles.
 
 Profile sessions are defined by tmuss.profile(5).
 
@@ -29,8 +31,7 @@ OPTIONS
     Print help.
 
   * `-l`, `--list`:
-    List all available profiles. Currently active profiles are marked with a
-    star (`*`).
+    List all available profiles.
 
   * `--version`:
     Print program version.
@@ -58,11 +59,11 @@ Report bugs to &lt;https://github.com/loonies/tmuss&gt;.
 EXAMPLES
 --------
 
-  * List all available profiles:
+  * List started profiles:
 
     $ tmuss
 
-  * Start or attach the _default_ profile:
+  * Start or attach to the _default_ profile:
 
     $ tmuss default
 

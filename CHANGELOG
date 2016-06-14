@@ -1,6 +1,18 @@
 tmuss changelog
 ===============
 
+Version 0.2.0 (14th June 2016)
+------------------------------
+
+ - Add Bash and zsh completion.
+
+ - Profiles are now listed as columns. If 'tmuss' is invoked without
+   arguments it will list started sessions only. Every started session
+   is marked as detached or attached.
+
+ - Improved error handling in case no profiles are found.
+
+
 Version 0.1.0 (20th June 2015)
 ------------------------------
 
@@ -12,4 +24,3 @@ management.
 
 Initial release supports listing profiles, creating profile based
 sessions, and attaching to existing sessions.
-
