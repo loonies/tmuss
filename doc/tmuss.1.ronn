@@ -5,7 +5,7 @@ SYNOPSYS
 --------
 
 `tmuss` [<profile>] <br>
-`tmuss` [--version] [--help] [-l|--list]
+`tmuss` [-h] [-l] [--version]
 
 DESCRIPTION
 -----------
